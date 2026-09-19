@@ -18,7 +18,7 @@ flowchart TB
     EXT["ajipita-extensions<br/><small>運用効率化ツール</small>"]
 
     WEB -->|"BFF 経由 / RLS で保護"| DB
-    ADMIN -->|"service_role で直接"| DB
+    ADMIN -->|"管理者権限で直接"| DB
     SERVICE -.->|"アプリへ誘導"| WEB
     EXT -.->|"運用作業の効率化"| ADMIN
 ```
