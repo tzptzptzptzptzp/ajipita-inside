@@ -8,61 +8,43 @@
 
 ```mermaid
 flowchart TB
-    subgraph client["利用者"]
-        U["ユーザー<br/>（スマートフォン中心）"]
-        OP["運営スタッフ"]
-    end
+    U["ユーザー"]
+    OP["運営スタッフ"]
 
-    subgraph vercel["Vercel（有料）"]
-        WEB["ajipita-web<br/>アプリ本体<br/><small>Next.js 16 / App Router</small>"]
-    end
+    SERVICE["ajipita-service<br/><small>サービスサイト（LP）<br/>Netlify・無料枠</small>"]
+    WEB["ajipita-web<br/><small>アプリ本体<br/>Vercel・有料</small>"]
+    ADMIN["ajipita-admin<br/><small>運営コンソール<br/>Netlify・無料枠</small>"]
 
-    subgraph netlify["Netlify（無料枠・商用可）"]
-        SERVICE["ajipita-service<br/>サービスサイト（LP）"]
-        ADMIN["ajipita-admin<br/>運営コンソール"]
-    end
+    DB[("Supabase PostgreSQL<br/><small>RLS で行レベル制御</small>")]
+    SBX["Supabase Auth / Storage"]
+    CRON["pg_cron + Edge Functions<br/><small>バッチ・健全性チェック</small>"]
 
-    subgraph supabase["Supabase"]
-        DB[("PostgreSQL<br/><small>RLS で行レベル制御</small>")]
-        AUTH["Auth<br/><small>マジックリンク / Google</small>"]
-        STORAGE["Storage<br/><small>料理写真</small>"]
-        CRON["pg_cron + Edge Functions<br/><small>バッチ・健全性チェック</small>"]
-    end
-
-    subgraph external["外部 API"]
-        HP["HotPepper<br/><small>無料</small>"]
-        PLACES["Google Places<br/><small>従量課金</small>"]
-        MAPS["Google Maps<br/><small>地図表示</small>"]
-    end
-
+    EXT["外部 API<br/><small>HotPepper（主経路・無料）<br/>Google Places（0 件のときだけ・従量課金）<br/>Google Maps（地図表示）</small>"]
     SENTRY["Sentry<br/><small>エラー + Web Vitals</small>"]
 
     U --> SERVICE
     U --> WEB
     OP --> ADMIN
-
-    SERVICE -.->|"アプリへ誘導"| WEB
+    SERVICE -.->|"誘導"| WEB
 
     WEB -->|"BFF 経由・RLS で保護"| DB
-    WEB --> AUTH
-    WEB --> STORAGE
-    WEB -->|"主経路"| HP
-    WEB -->|"0 件のときだけ"| PLACES
-    WEB --> MAPS
-
     ADMIN -->|"管理者権限・RLS バイパス"| DB
-
-    CRON --> DB
-    CRON -->|"監視経路は<br/>Vercel を通さない"| SENTRY
+    WEB --> SBX
+    WEB --> EXT
     WEB --> SENTRY
+
+    DB --- CRON
+    CRON -->|"Vercel を経由しない"| SENTRY
 
     classDef paid fill:#fde8e8,stroke:#e04747,color:#7a1a1a
     classDef free fill:#e8f4ea,stroke:#3d9c52,color:#14471f
     classDef data fill:#e8eefc,stroke:#3b6fd4,color:#12305e
-    class PLACES paid
-    class HP,SERVICE,ADMIN free
-    class DB,AUTH,STORAGE,CRON data
+    class WEB paid
+    class SERVICE,ADMIN free
+    class DB,SBX,CRON data
 ```
+
+> 課金が発生するのは赤のノードだけです。外部 API の内訳と防壁は B を参照。
 
 ---
 
@@ -147,39 +129,31 @@ flowchart TB
 ## D. 環境の 3 層とデプロイ
 
 ```mermaid
-flowchart LR
-    subgraph local["ローカル"]
-        DOCKER["Docker Supabase<br/><small>日常開発の主軸</small>"]
-    end
+flowchart TB
+    DOCKER["ローカル Docker Supabase<br/><small>日常開発の主軸</small>"]
 
-    subgraph github["GitHub"]
-        FEATURE["feature/*"]
-        DEVELOP["develop"]
-        MAIN["main"]
-        CI["GitHub Actions<br/><small>lint / E2E / pgTAP</small>"]
-    end
+    FEATURE["feature/*"]
+    DEVELOP["develop"]
+    MAIN["main"]
+    CI["GitHub Actions<br/><small>lint / E2E / pgTAP</small>"]
 
-    subgraph cloud["クラウド"]
-        DEV_SB["Supabase dev<br/><small>プレビュー用</small>"]
-        PROD_SB["Supabase production"]
-        PREVIEW["プレビューデプロイ"]
-        PROD["本番"]
-    end
+    PREVIEW["プレビューデプロイ"]
+    DEV_SB[("Supabase dev")]
+    PROD["本番"]
+    PROD_SB[("Supabase production")]
 
-    DOCKER -.->|"ローカルで検証"| FEATURE
+    DOCKER -->|"ローカルで検証"| FEATURE
     FEATURE --> DEVELOP
     DEVELOP --> MAIN
 
     DEVELOP -.->|"CI 実行"| CI
     MAIN -.->|"CI 実行"| CI
 
-    DEVELOP --> PREVIEW
-    PREVIEW --> DEV_SB
-    MAIN --> PROD
-    PROD --> PROD_SB
+    DEVELOP --> PREVIEW --> DEV_SB
+    MAIN --> PROD --> PROD_SB
 
-    classDef env fill:#e8eefc,stroke:#3b6fd4,color:#12305e
+    classDef local fill:#e8eefc,stroke:#3b6fd4,color:#12305e
     classDef prod fill:#fde8e8,stroke:#e04747,color:#7a1a1a
-    class DOCKER,DEV_SB,PREVIEW env
+    class DOCKER,PREVIEW,DEV_SB local
     class MAIN,PROD,PROD_SB prod
 ```
