@@ -8,7 +8,7 @@
 
 あじぴたは 4 つのリポジトリで構成されています。
 
-![インフラ全体構成](./diagrams/infrastructure.svg)
+![インフラ全体構成](./diagrams/infrastructure.png)
 
 > 図は [`diagrams/infrastructure.drawio`](./diagrams/infrastructure.drawio) で編集できます。
 

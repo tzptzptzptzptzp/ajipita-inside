@@ -18,10 +18,10 @@ Mermaid 版も併記しています（GitHub 上でテキストとして差分�
 
 ### draw.io 版（決定版）
 
-![インフラ全体構成](./diagrams/infrastructure.svg)
+![インフラ全体構成](./diagrams/infrastructure.png)
 
 編集用ファイル: [`diagrams/infrastructure.drawio`](./diagrams/infrastructure.drawio)
-（[app.diagrams.net](https://app.diagrams.net) で開ける。PNG / SVG は同ディレクトリに書き出し済み）
+（[app.diagrams.net](https://app.diagrams.net) で開ける。PNG は同ディレクトリに書き出し済み）
 
 ### Mermaid 版（GitHub 上で即読める簡易版）
 
@@ -77,7 +77,7 @@ flowchart TB
 
 ### draw.io 版（決定版）
 
-![店舗検索のコスト防壁](./diagrams/cost-barriers.svg)
+![店舗検索のコスト防壁](./diagrams/cost-barriers.png)
 
 編集用: [`diagrams/cost-barriers.drawio`](./diagrams/cost-barriers.drawio)
 
@@ -130,7 +130,7 @@ flowchart TB
 
 ### draw.io 版（決定版）
 
-![データアクセス境界](./diagrams/data-access.svg)
+![データアクセス境界](./diagrams/data-access.png)
 
 編集用: [`diagrams/data-access.drawio`](./diagrams/data-access.drawio)
 
@@ -169,7 +169,7 @@ flowchart TB
 
 ### draw.io 版（決定版）
 
-![環境の3層とデプロイ](./diagrams/environments.svg)
+![環境の3層とデプロイ](./diagrams/environments.png)
 
 編集用: [`diagrams/environments.drawio`](./diagrams/environments.drawio)
 

@@ -51,7 +51,7 @@
 | **クラウド dev** | プレビューデプロイの接続先・実機確認 |
 | **クラウド production** | 本番 |
 
-![環境の3層とデプロイ](./diagrams/environments.svg)
+![環境の3層とデプロイ](./diagrams/environments.png)
 
 Supabase はローカルで Docker 上にフルスタック（DB + 認証 + ストレージ + Edge Functions）を
 立てられます。日常の開発はここで行います。

@@ -158,7 +158,7 @@ Google Places の課金は、**リクエストで要求したフィールドの�
 
 「呼ばない」を実現するために、防壁を多層で入れました。
 
-![店舗検索のコスト防壁](./diagrams/cost-barriers.svg)
+![店舗検索のコスト防壁](./diagrams/cost-barriers.png)
 
 ### ① 外部 API を使わない経路を用意する
 
