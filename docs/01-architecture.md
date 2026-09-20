@@ -15,7 +15,7 @@ flowchart TB
     WEB["ajipita-web<br/><small>アプリ本体</small>"]
     ADMIN["ajipita-admin<br/><small>運営コンソール</small>"]
     SERVICE["ajipita-service<br/><small>サービスサイト（LP）</small>"]
-    EXT["ajipita-reviews-extractor<br/><small>運用効率化ツール</small>"]
+    EXT["ajipita-extensions<br/><small>運用効率化ツール</small>"]
 
     WEB -->|"BFF 経由 / RLS で保護"| DB
     ADMIN -->|"管理者権限で直接"| DB
@@ -28,7 +28,7 @@ flowchart TB
 | **ajipita-web** | アプリ本体。ユーザーが使う画面のすべて | 一般公開 |
 | **ajipita-admin** | 運営コンソール。通報対応・店舗申請・お知らせ配信 | 運営のみ |
 | **ajipita-service** | サービスサイト（LP）。アプリへの誘導が役割 | 一般公開 |
-| **ajipita-reviews-extractor** | 運用データの収集を効率化するために自作した Chrome 拡張 | 自分のみ |
+| **ajipita-extensions** | 運用作業を効率化するために自作した Chrome 拡張 | 自分のみ |
 
 サービスサイトをアプリ本体と分けたのは、**役割が違うから**です。LP はブランド体験と誘導が仕事で、
 静的中心・DB 不要。アプリ本体の認証やデータアクセスの制約を持ち込む必要がありません。
