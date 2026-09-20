@@ -11,9 +11,12 @@ flowchart TB
     U["ユーザー"]
     OP["運営スタッフ"]
 
-    SERVICE["ajipita-service<br/><small>サービスサイト（LP）<br/>Netlify・無料枠</small>"]
     WEB["ajipita-web<br/><small>アプリ本体<br/>Vercel・有料</small>"]
-    ADMIN["ajipita-admin<br/><small>運営コンソール<br/>Netlify・無料枠</small>"]
+
+    subgraph netlify["Netlify（無料枠・商用利用可）"]
+        SERVICE["ajipita-service<br/><small>サービスサイト（LP）</small>"]
+        ADMIN["ajipita-admin<br/><small>運営コンソール</small>"]
+    end
 
     DB[("Supabase PostgreSQL<br/><small>RLS で行レベル制御</small>")]
     SBX["Supabase Auth / Storage"]
