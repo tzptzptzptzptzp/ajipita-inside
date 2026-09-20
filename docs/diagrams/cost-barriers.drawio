@@ -1,0 +1,159 @@
+<mxfile host="app.diagrams.net" agent="ajipita-inside" version="24.7.17">
+  <diagram name="店舗検索のコスト防壁" id="ajipita-cost">
+    <mxGraphModel dx="1400" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1180" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="店舗検索のコスト防壁"
+          style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;fontColor=#1F2933;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="従量課金 API に到達する前に、何段階で止めているか"
+          style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fontColor=#616E7C;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="52" width="600" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- 入口 -->
+        <mxCell id="start" value="店舗検索リクエスト"
+          style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C5CD6;fontColor=#3B2A78;fontSize=14;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="380" y="100" width="220" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- ① -->
+        <mxCell id="g1" value="&lt;b&gt;①&lt;/b&gt; 登録店のみ検索？"
+          style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4E0;strokeColor=#D98C1F;fontColor=#6B4108;fontSize=13;"
+          vertex="1" parent="1">
+          <mxGeometry x="370" y="190" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" value="&lt;b&gt;自前 DB だけを引く&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#2E6B3E;&quot;&gt;外部 API を呼ばない&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#3D9C52;fontColor=#14471F;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="740" y="205" width="230" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ② -->
+        <mxCell id="g2" value="&lt;b&gt;②&lt;/b&gt; HotPepper で&lt;br/&gt;結果が得られた？"
+          style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4E0;strokeColor=#D98C1F;fontColor=#6B4108;fontSize=13;"
+          vertex="1" parent="1">
+          <mxGeometry x="370" y="325" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" value="&lt;b&gt;HotPepper の結果を返す&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#2E6B3E;&quot;&gt;主経路・無料&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#3D9C52;fontColor=#14471F;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="740" y="340" width="230" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ③ -->
+        <mxCell id="g3" value="&lt;b&gt;③&lt;/b&gt; キャッシュに&lt;br/&gt;ヒットした？"
+          style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4E0;strokeColor=#D98C1F;fontColor=#6B4108;fontSize=13;"
+          vertex="1" parent="1">
+          <mxGeometry x="370" y="460" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" value="&lt;b&gt;キャッシュから返す&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#2E6B3E;&quot;&gt;クエリ + 座標グリッド + 半径&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#3D9C52;fontColor=#14471F;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="740" y="475" width="230" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ④ -->
+        <mxCell id="g4" value="&lt;b&gt;④&lt;/b&gt; 上限内？&lt;br/&gt;&lt;font style=&quot;font-size:11px;&quot;&gt;IP ハッシュ + 全体の二段&lt;/font&gt;"
+          style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4E0;strokeColor=#D98C1F;fontColor=#6B4108;fontSize=13;"
+          vertex="1" parent="1">
+          <mxGeometry x="360" y="595" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" value="&lt;b&gt;Places を呼ばず&lt;br/&gt;HotPepper の結果を返す&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#2E6B3E;&quot;&gt;黙って縮退する&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#3D9C52;fontColor=#14471F;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="60" y="610" width="230" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- 課金 -->
+        <mxCell id="call" value="&lt;b&gt;Google Places を呼ぶ&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:12px;color:#7A1A1A;&quot;&gt;ここで初めて課金が発生する&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8E8;strokeColor=#E04747;strokeWidth=2;fontColor=#7A1A1A;fontSize=14;"
+          vertex="1" parent="1">
+          <mxGeometry x="360" y="760" width="260" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ⑦ -->
+        <mxCell id="meter" value="&lt;b&gt;⑦ サーバー側で回数を記録&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#2A4E8A;&quot;&gt;課金対象と 1 対 1 で対応させる&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEFC;strokeColor=#3B6FD4;fontColor=#12305E;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="360" y="880" width="260" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 内側に効く防壁 -->
+        <mxCell id="innerBox" value="判定と呼び出しの「内側」に効く防壁"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#9CA3AF;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontSize=11;fontStyle=1;fontColor=#616E7C;"
+          vertex="1" parent="1">
+          <mxGeometry x="700" y="595" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" value="&lt;b&gt;⑤ 台帳の権限を誰にも配らない&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#616E7C;&quot;&gt;行を消せる権限 = 上限をリセットできる権限&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9CA3AF;fontColor=#374151;fontSize=11;align=left;spacingLeft=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="716" y="626" width="288" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" value="&lt;b&gt;⑥ 取得フィールドを最小限にする&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#616E7C;&quot;&gt;さらに上の課金層に上げない&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9CA3AF;fontColor=#374151;fontSize=11;align=left;spacingLeft=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="716" y="690" width="288" height="52" as="geometry" />
+        </mxCell>
+
+        <!-- ⑧ 別経路 -->
+        <mxCell id="detailBox" value="店舗詳細の取得（別経路・別 SKU）"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF5;strokeColor=#D98C1F;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontSize=11;fontStyle=1;fontColor=#6B4108;"
+          vertex="1" parent="1">
+          <mxGeometry x="700" y="850" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="b8" value="&lt;b&gt;⑧ 提示済み ID の allowlist&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#6B4108;&quot;&gt;未認証公開ページに任意 ID を投げられても、&lt;br/&gt;台帳に無い ID は外部 API を叩かず 404&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4E0;strokeColor=#D98C1F;fontColor=#6B4108;fontSize=11;align=left;spacingLeft=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="716" y="882" width="288" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 接続 ===== -->
+        <mxCell id="e0" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#7C5CD6;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="start" target="g1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1y" value="はい" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3D9C52;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=11;fontColor=#14471F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="g1" target="r1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1n" value="いいえ" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D98C1F;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=11;fontColor=#6B4108;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="g1" target="g2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2y" value="1 件以上" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3D9C52;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=11;fontColor=#14471F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="g2" target="r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2n" value="0 件" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D98C1F;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=11;fontColor=#6B4108;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="g2" target="g3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3y" value="ヒット" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3D9C52;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=11;fontColor=#14471F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="g3" target="r3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3n" value="ミス" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D98C1F;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=11;fontColor=#6B4108;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="g3" target="g4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4n" value="超過 / 確認不能&#10;（fail closed）" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3D9C52;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;fontSize=11;fontColor=#14471F;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;" edge="1" parent="1" source="g4" target="r4">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset" y="-6" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e4y" value="枠あり" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E04747;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=11;fontColor=#7A1A1A;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="g4" target="call">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3B6FD4;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="call" target="meter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 注記 -->
+        <mxCell id="note" value="緑に着地すれば課金は発生しない。赤に到達するのは、&#10;①〜④ をすべて通り抜けたリクエストだけ。"
+          style="text;html=1;fontSize=12;align=left;verticalAlign=top;fontColor=#616E7C;"
+          vertex="1" parent="1">
+          <mxGeometry x="90" y="740" width="250" height="60" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

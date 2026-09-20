@@ -64,6 +64,14 @@ flowchart TB
 
 6 章の 8 層を、リクエストの流れとして表したもの。
 
+### draw.io 版（決定版）
+
+![店舗検索のコスト防壁](./diagrams/cost-barriers.svg)
+
+編集用: [`diagrams/cost-barriers.drawio`](./diagrams/cost-barriers.drawio)
+
+### Mermaid 版（簡易版）
+
 ```mermaid
 flowchart TB
     START(["店舗検索リクエスト"])
@@ -109,6 +117,14 @@ flowchart TB
 
 4 章の構成。ロジックの置き場所と到達方法を分けている。
 
+### draw.io 版（決定版）
+
+![データアクセス境界](./diagrams/data-access.svg)
+
+編集用: [`diagrams/data-access.drawio`](./diagrams/data-access.drawio)
+
+### Mermaid 版（簡易版）
+
 ```mermaid
 flowchart TB
     subgraph server["サーバー"]
@@ -139,6 +155,14 @@ flowchart TB
 ---
 
 ## D. 環境の 3 層とデプロイ
+
+### draw.io 版（決定版）
+
+![環境の3層とデプロイ](./diagrams/environments.svg)
+
+編集用: [`diagrams/environments.drawio`](./diagrams/environments.drawio)
+
+### Mermaid 版（簡易版）
 
 ```mermaid
 flowchart TB
