@@ -10,7 +10,7 @@
           vertex="1" parent="1">
           <mxGeometry x="40" y="24" width="500" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="日常開発はローカル。CI は develop / main の手前でだけ通す"
+        <mxCell id="subtitle" value="日常開発はローカル。重い CI だけ develop / main の手前に寄せる"
           style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fontColor=#616E7C;"
           vertex="1" parent="1">
           <mxGeometry x="40" y="52" width="600" height="20" as="geometry" />
@@ -32,7 +32,7 @@
         <mxCell id="ghBox" value="GitHub"
           style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#9CA3AF;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=12;fontStyle=1;fontColor=#374151;"
           vertex="1" parent="1">
-          <mxGeometry x="40" y="300" width="600" height="230" as="geometry" />
+          <mxGeometry x="40" y="300" width="620" height="230" as="geometry" />
         </mxCell>
         <mxCell id="feature" value="feature/*&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#616E7C;&quot;&gt;Issue 1 つに 1 本&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9CA3AF;fontColor=#374151;fontSize=12;"
@@ -49,10 +49,15 @@
           vertex="1" parent="1">
           <mxGeometry x="440" y="350" width="150" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="ci" value="&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#616E7C;&quot;&gt;lint / 型 / E2E / pgTAP&lt;br/&gt;develop・main 向けの PR でのみ実行&lt;/font&gt;"
+        <mxCell id="ciFast" value="&lt;b&gt;静的チェック&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#2E6B3E;&quot;&gt;lint / 型 / 単体テスト&lt;br/&gt;&lt;b&gt;全 PR で実行&lt;/b&gt;・1 分前後で終わる&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#3D9C52;fontColor=#14471F;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="70" y="445" width="250" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="ciSlow" value="&lt;b&gt;E2E / pgTAP&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#6B4108;&quot;&gt;Supabase 起動 + DB リセットで重い&lt;br/&gt;&lt;b&gt;develop・main 向けの PR でのみ&lt;/b&gt;&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4E0;strokeColor=#D98C1F;fontColor=#6B4108;fontSize=12;"
           vertex="1" parent="1">
-          <mxGeometry x="180" y="445" width="285" height="62" as="geometry" />
+          <mxGeometry x="350" y="445" width="250" height="62" as="geometry" />
         </mxCell>
 
         <!-- クラウド -->
@@ -61,12 +66,12 @@
           vertex="1" parent="1">
           <mxGeometry x="700" y="110" width="320" height="400" as="geometry" />
         </mxCell>
-        <mxCell id="preview" value="&lt;b&gt;プレビューデプロイ&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#2A4E8A;&quot;&gt;実機確認の場所&lt;/font&gt;"
+        <mxCell id="preview" value="&lt;b&gt;プレビューデプロイ&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#2A4E8A;&quot;&gt;PR ごとに生成・実機確認の場所&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEFC;strokeColor=#3B6FD4;fontColor=#12305E;fontSize=12;"
           vertex="1" parent="1">
           <mxGeometry x="725" y="155" width="270" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="devsb" value="&lt;b&gt;Supabase dev&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#2A4E8A;&quot;&gt;PR 作成時に自動で復帰させる&lt;/font&gt;"
+        <mxCell id="devsb" value="&lt;b&gt;Supabase dev&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#2A4E8A;&quot;&gt;Free・1 週間で自動 pause&lt;br/&gt;PR 作成時に自動で復帰させる&lt;/font&gt;"
           style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#E8EEFC;strokeColor=#3B6FD4;fontColor=#12305E;fontSize=12;"
           vertex="1" parent="1">
           <mxGeometry x="725" y="240" width="270" height="76" as="geometry" />
@@ -76,7 +81,7 @@
           vertex="1" parent="1">
           <mxGeometry x="725" y="345" width="270" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="prodsb" value="&lt;b&gt;Supabase production&lt;/b&gt;"
+        <mxCell id="prodsb" value="&lt;b&gt;Supabase production&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#8A4B4B;&quot;&gt;Pro&lt;/font&gt;"
           style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#FDE8E8;strokeColor=#E04747;fontColor=#7A1A1A;fontSize=12;"
           vertex="1" parent="1">
           <mxGeometry x="725" y="425" width="270" height="70" as="geometry" />
@@ -93,10 +98,16 @@
         <mxCell id="e_d_m" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#9CA3AF;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="develop" target="main">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_dev_ci" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D98C1F;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="develop" target="ci">
+        <mxCell id="e_feat_fast" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3D9C52;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.3;entryY=0;" edge="1" parent="1" source="feature" target="ciFast">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_main_ci" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D98C1F;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" edge="1" parent="1" source="main" target="ci">
+        <mxCell id="e_dev_fast" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3D9C52;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;exitX=0.25;exitY=1;entryX=0.8;entryY=0;" edge="1" parent="1" source="develop" target="ciFast">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dev_slow" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D98C1F;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;exitX=0.75;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="develop" target="ciSlow">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_main_slow" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D98C1F;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" edge="1" parent="1" source="main" target="ciSlow">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e_dev_prev" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3B6FD4;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=0;entryX=0;entryY=0.5;" edge="1" parent="1" source="develop" target="preview">

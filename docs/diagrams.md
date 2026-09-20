@@ -41,7 +41,7 @@ flowchart TB
     SBX["Supabase Auth / Storage"]
     CRON["pg_cron + Edge Functions<br/><small>バッチ・健全性チェック</small>"]
 
-    EXT["外部 API<br/><small>HotPepper（主経路・無料）<br/>Google Places（0 件のときだけ・従量課金）<br/>Google Maps（地図表示）</small>"]
+    EXT["外部 API<br/><small>HotPepper（主経路・無料）<br/>Google Places（0 件のときだけ・$32/1,000）<br/>Google Geocoding（エリア名解決・$5/1,000）<br/>Google Maps（地図表示）</small>"]
     SENTRY["Sentry<br/><small>エラー + Web Vitals</small>"]
 
     U --> SERVICE
@@ -53,6 +53,7 @@ flowchart TB
     ADMIN -->|"管理者権限・RLS バイパス"| DB
     WEB --> SBX
     WEB --> EXT
+    ADMIN -.->|"運営操作時のみ"| EXT
     WEB --> SENTRY
 
     DB --- CRON
@@ -87,9 +88,9 @@ flowchart TB
     START(["店舗検索リクエスト"])
 
     G1{"① 登録店のみ検索？"}
-    G2{"② HotPepper で<br/>結果が得られた？"}
+    G2{"② HotPepper が 0 件？<br/>かつ 1 ページ目？"}
     G3{"③ キャッシュに<br/>ヒットした？"}
-    G4{"④ 上限内？<br/><small>IP ハッシュ + 全体</small>"}
+    G4{"④ 上限内？<br/><small>IP ハッシュ + 全体 / 短窓と日次</small>"}
 
     DB_ONLY["自前 DB だけを引く<br/><small>外部 API を呼ばない</small>"]
     HP_RES["HotPepper の結果を返す"]
@@ -101,8 +102,8 @@ flowchart TB
     START --> G1
     G1 -->|"はい"| DB_ONLY
     G1 -->|"いいえ"| G2
-    G2 -->|"1 件以上"| HP_RES
-    G2 -->|"0 件"| G3
+    G2 -->|"1 件以上 /<br/>2 ページ目以降"| HP_RES
+    G2 -->|"0 件 かつ 1 ページ目"| G3
     G3 -->|"ヒット"| CACHE_RES
     G3 -->|"ミス"| G4
     G4 -->|"超過 / 確認不能<br/><small>fail closed</small>"| DEGRADE
@@ -181,19 +182,22 @@ flowchart TB
     FEATURE["feature/*"]
     DEVELOP["develop"]
     MAIN["main"]
-    CI["GitHub Actions<br/><small>lint / E2E / pgTAP</small>"]
+    CIFAST["静的チェック<br/><small>lint / 型 / 単体テスト<br/>全 PR で実行</small>"]
+    CISLOW["E2E / pgTAP<br/><small>develop・main 向け PR のみ</small>"]
 
-    PREVIEW["プレビューデプロイ"]
-    DEV_SB[("Supabase dev")]
+    PREVIEW["プレビューデプロイ<br/><small>PR ごとに生成</small>"]
+    DEV_SB[("Supabase dev<br/><small>Free・1 週間で自動 pause</small>")]
     PROD["本番"]
-    PROD_SB[("Supabase production")]
+    PROD_SB[("Supabase production<br/><small>Pro</small>")]
 
     DOCKER -->|"ローカルで検証"| FEATURE
     FEATURE --> DEVELOP
     DEVELOP --> MAIN
 
-    DEVELOP -.->|"CI 実行"| CI
-    MAIN -.->|"CI 実行"| CI
+    FEATURE -.-> CIFAST
+    DEVELOP -.-> CIFAST
+    DEVELOP -.-> CISLOW
+    MAIN -.-> CISLOW
 
     DEVELOP --> PREVIEW --> DEV_SB
     MAIN --> PROD --> PROD_SB

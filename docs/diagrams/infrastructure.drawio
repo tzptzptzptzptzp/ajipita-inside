@@ -62,22 +62,27 @@
         <mxCell id="extBox" value="外部 API"
           style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCFAFF;strokeColor=#9B8AC4;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=12;fontStyle=1;fontColor=#4A3A6B;dashed=0;"
           vertex="1" parent="1">
-          <mxGeometry x="60" y="420" width="330" height="190" as="geometry" />
+          <mxGeometry x="60" y="420" width="330" height="248" as="geometry" />
         </mxCell>
         <mxCell id="hp" value="&lt;b&gt;HotPepper&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#2E6B3E;&quot;&gt;主経路・無料&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#3D9C52;fontColor=#14471F;fontSize=12;"
           vertex="1" parent="1">
           <mxGeometry x="80" y="456" width="290" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="places" value="&lt;b&gt;Google Places&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#8A4B4B;&quot;&gt;0 件のときだけ・従量課金&lt;/font&gt;"
+        <mxCell id="places" value="&lt;b&gt;Google Places&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#8A4B4B;&quot;&gt;0 件のときだけ・従量課金（$32/1,000）&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8E8;strokeColor=#E04747;fontColor=#7A1A1A;fontSize=12;"
           vertex="1" parent="1">
           <mxGeometry x="80" y="508" width="290" height="44" as="geometry" />
         </mxCell>
+        <mxCell id="geocode" value="&lt;b&gt;Google Geocoding&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#8A4B4B;&quot;&gt;エリア名→座標・従量課金（$5/1,000）&lt;/font&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8E8;strokeColor=#E04747;fontColor=#7A1A1A;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="290" height="44" as="geometry" />
+        </mxCell>
         <mxCell id="maps" value="&lt;b&gt;Google Maps&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#616E7C;&quot;&gt;地図表示&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#9CA3AF;fontColor=#374151;fontSize=12;"
           vertex="1" parent="1">
-          <mxGeometry x="80" y="560" width="290" height="40" as="geometry" />
+          <mxGeometry x="80" y="612" width="290" height="40" as="geometry" />
         </mxCell>
 
         <!-- ===== Supabase ===== -->
@@ -111,7 +116,7 @@
         <mxCell id="sentry" value="&lt;b&gt;Sentry&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:11px;color:#616E7C;&quot;&gt;エラー + Web Vitals（無料枠）&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#9CA3AF;fontColor=#374151;fontSize=13;"
           vertex="1" parent="1">
-          <mxGeometry x="330" y="760" width="330" height="56" as="geometry" />
+          <mxGeometry x="330" y="790" width="330" height="56" as="geometry" />
         </mxCell>
 
         <!-- ===== 接続 ===== -->
@@ -144,15 +149,22 @@
         <mxCell id="e_web_ext" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#9B8AC4;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="web" target="extBox">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_web_sentry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#9CA3AF;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="web" target="sentry">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="40" y="284" /><mxPoint x="40" y="788" /></Array>
+        <mxCell id="e_admin_ext" value="運営操作時のみ&#10;web とキャッシュを共有"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#9B8AC4;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;exitX=0;exitY=1;entryX=1;entryY=0.25;fontSize=10;fontColor=#4A3A6B;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="admin" target="extBox">
+          <mxGeometry relative="1" as="geometry" x="0.55">
+            <Array as="points"><mxPoint x="620" y="380" /><mxPoint x="620" y="482" /></Array>
+            <mxPoint as="offset" y="-10" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="e_cron_sentry" value="監視の経路は Vercel を通らない"
+        <mxCell id="e_web_sentry" value="アプリのエラー・Web Vitals" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#9CA3AF;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;fontSize=10;fontColor=#616E7C;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="web" target="sentry">
+          <mxGeometry relative="1" as="geometry" x="0.85">
+            <Array as="points"><mxPoint x="40" y="284" /><mxPoint x="40" y="818" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cron_sentry" value="バッチの通報は Vercel を経由しない"
           style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3B6FD4;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;fontSize=11;fontColor=#12305E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cron" target="sentry">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="822" y="788" /></Array>
+            <Array as="points"><mxPoint x="822" y="818" /></Array>
           </mxGeometry>
         </mxCell>
 
@@ -160,27 +172,27 @@
         <mxCell id="legendBox" value="凡例"
           style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#CBD2D9;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=11;fontStyle=1;fontColor=#616E7C;dashed=1;"
           vertex="1" parent="1">
-          <mxGeometry x="60" y="860" width="300" height="100" as="geometry" />
+          <mxGeometry x="60" y="890" width="300" height="100" as="geometry" />
         </mxCell>
         <mxCell id="lg1" value="課金が発生する"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8E8;strokeColor=#E04747;fontColor=#7A1A1A;fontSize=11;"
           vertex="1" parent="1">
-          <mxGeometry x="76" y="886" width="130" height="26" as="geometry" />
+          <mxGeometry x="76" y="916" width="130" height="26" as="geometry" />
         </mxCell>
         <mxCell id="lg2" value="無料で運用"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#3D9C52;fontColor=#14471F;fontSize=11;"
           vertex="1" parent="1">
-          <mxGeometry x="216" y="886" width="130" height="26" as="geometry" />
+          <mxGeometry x="216" y="916" width="130" height="26" as="geometry" />
         </mxCell>
         <mxCell id="lg3" value="データ層"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEFC;strokeColor=#3B6FD4;fontColor=#12305E;fontSize=11;"
           vertex="1" parent="1">
-          <mxGeometry x="76" y="920" width="130" height="26" as="geometry" />
+          <mxGeometry x="76" y="950" width="130" height="26" as="geometry" />
         </mxCell>
         <mxCell id="lg4" value="その他"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#9CA3AF;fontColor=#374151;fontSize=11;"
           vertex="1" parent="1">
-          <mxGeometry x="216" y="920" width="130" height="26" as="geometry" />
+          <mxGeometry x="216" y="950" width="130" height="26" as="geometry" />
         </mxCell>
 
       </root>
