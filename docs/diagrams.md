@@ -6,6 +6,15 @@
 
 ## A. インフラ全体構成
 
+### draw.io 版（決定版）
+
+![インフラ全体構成](./diagrams/infrastructure.svg)
+
+編集用ファイル: [`diagrams/infrastructure.drawio`](./diagrams/infrastructure.drawio)
+（[app.diagrams.net](https://app.diagrams.net) で開ける。PNG / SVG は同ディレクトリに書き出し済み）
+
+### Mermaid 版（GitHub 上で即読める簡易版）
+
 ```mermaid
 flowchart TB
     U["ユーザー"]
