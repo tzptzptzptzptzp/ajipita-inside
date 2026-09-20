@@ -8,20 +8,9 @@
 
 あじぴたは 4 つのリポジトリで構成されています。
 
-```mermaid
-flowchart TB
-    DB[("Supabase<br/>PostgreSQL / Auth / Storage<br/>RLS / pg_cron / Edge Functions")]
+![インフラ全体構成](./diagrams/infrastructure.svg)
 
-    WEB["ajipita-web<br/><small>アプリ本体</small>"]
-    ADMIN["ajipita-admin<br/><small>運営コンソール</small>"]
-    SERVICE["ajipita-service<br/><small>サービスサイト（LP）</small>"]
-    EXT["ajipita-extensions<br/><small>運用効率化ツール</small>"]
-
-    WEB -->|"BFF 経由 / RLS で保護"| DB
-    ADMIN -->|"管理者権限で直接"| DB
-    SERVICE -.->|"アプリへ誘導"| WEB
-    EXT -.->|"運用作業の効率化"| ADMIN
-```
+> 図は [`diagrams/infrastructure.drawio`](./diagrams/infrastructure.drawio) で編集できます。
 
 | リポジトリ | 役割 | 公開範囲 |
 | --- | --- | --- |
