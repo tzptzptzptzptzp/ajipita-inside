@@ -48,7 +48,7 @@
 | バックエンド・DB | Supabase（PostgreSQL / Auth / Storage / RLS） |
 | 店舗データ | HotPepper グルメサーチ API → Google Places API (New) へ段階移行中 |
 | 地図 | Google Maps JavaScript API |
-| ホスティング | Vercel（フロント）/ Supabase（DB・Auth・Storage） |
+| ホスティング | Vercel（アプリ本体）/ Netlify（運営コンソール・LP）/ Supabase（DB・Auth・Storage） |
 | バッチ | pg_cron + Supabase Edge Functions |
 | 監視 | Sentry / Vercel Analytics / Supabase Logs |
 | 分析 | GTM + GA4（同意管理付き） |
