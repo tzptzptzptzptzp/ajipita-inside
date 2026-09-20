@@ -189,7 +189,7 @@ Edge Functions は「回収済みの結果を Sentry の形にして送る」だ
 | エラー | Sentry |
 | パフォーマンス（実ユーザー） | Sentry（[3 章](./03-frontend.md)） |
 | アクセス解析 | GTM + GA4（同意管理付き） |
-| インフラのログ | Vercel / Supabase のログ |
+| インフラのログ | Vercel / Netlify / Supabase のログ |
 | バッチの健全性 | 自作の健全性チェック（5.3） |
 
 Sentry はエラー監視として入れましたが、**Web Vitals の収集も兼ねている**ので、
