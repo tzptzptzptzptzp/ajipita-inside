@@ -297,7 +297,7 @@ const shouldFallbackToPlaces = ({ registeredOnly, hotpepperCount, isFirstPage })
 
 > **運営コンソールからの呼び出しは、この防壁の外にあります。**
 > admin も同じ外部 API を叩きますが、上限判定は入れていません。
-> Basic 認証と運営セッションの内側にあり、**未認証で到達できる web とは前提が違う**ためです。
+> サイト全体のゲートと運営セッションの内側にあり、**未認証で到達できる web とは前提が違う**ためです。
 > ただしキャッシュと allowlist の台帳は web と共有しているので、
 > 同じ検索を 2 回課金することはありません。
 
