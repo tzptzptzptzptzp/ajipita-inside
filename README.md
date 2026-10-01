@@ -63,12 +63,12 @@
 | --- | --- |
 | フロントエンド | Next.js 16 / React 19 / TypeScript / Tailwind CSS 4 |
 | バックエンド・DB | Supabase（PostgreSQL / Auth / Storage / RLS） |
-| 店舗データ | HotPepper グルメサーチ API → Google Places API (New) へ段階移行中 |
+| 店舗データ | HotPepper グルメサーチ API（主経路）+ Google Places API (New)（0 件のときだけ） |
 | 地図 | Google Maps JavaScript API |
 | ホスティング | Vercel（アプリ本体）/ Netlify（運営コンソール・LP）/ Supabase（DB・Auth・Storage） |
 | バッチ | pg_cron + Supabase Edge Functions |
 | 監視 | Sentry（エラー + Web Vitals）/ Vercel・Netlify・Supabase のログ |
-| 分析 | GTM + GA4（同意管理付き） |
+| 分析 | GTM + GA4（同意管理付き）/ 運営コンソールの分析ページ（KPI・時系列グラフ） |
 
 ---
 
