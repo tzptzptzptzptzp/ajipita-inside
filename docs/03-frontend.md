@@ -53,7 +53,7 @@ src/                     ← 実装のすべて
 ```
 
 **`app/` にはルーティングの定義だけを置き、実装は `src/` に集約する**方針です。
-`app/[route]/page.tsx` は対応する `src/components/pages/` のコンポーネントを import するだけ。
+`app/[route]/page.tsx` に書くのは、データの取得と、対応する `src/components/pages/` のコンポーネントへの受け渡しだけ。画面の中身（UI）はすべて `src/` 側に置きます。
 
 こうしている理由は、**ルーティングの都合と UI の都合を混ぜないため**です。
 App Router は `page.tsx` `layout.tsx` `loading.tsx` といった特別なファイル名の規約を持っていて、
