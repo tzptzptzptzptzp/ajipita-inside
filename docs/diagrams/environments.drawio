@@ -76,7 +76,7 @@
           vertex="1" parent="1">
           <mxGeometry x="725" y="240" width="270" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="prod" value="&lt;b&gt;本番&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#8A4B4B;&quot;&gt;Vercel / Netlify&lt;/font&gt;"
+        <mxCell id="prod" value="&lt;b&gt;本番&lt;/b&gt;&lt;br/&gt;&lt;font style=&quot;font-size:10px;color:#8A4B4B;&quot;&gt;Vercel&lt;/font&gt;"
           style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8E8;strokeColor=#E04747;fontColor=#7A1A1A;fontSize=12;"
           vertex="1" parent="1">
           <mxGeometry x="725" y="345" width="270" height="56" as="geometry" />

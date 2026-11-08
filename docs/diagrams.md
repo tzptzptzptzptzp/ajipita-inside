@@ -32,7 +32,7 @@ flowchart TB
 
     WEB["ajipita-web<br/><small>アプリ本体<br/>Vercel・有料</small>"]
 
-    subgraph netlify["Netlify（無料枠・商用利用可）"]
+    subgraph vercel_extra["Vercel（同じ Pro 契約・追加費用なし）"]
         SERVICE["ajipita-service<br/><small>サービスサイト（LP）</small>"]
         ADMIN["ajipita-admin<br/><small>運営コンソール</small>"]
     end
