@@ -128,7 +128,7 @@
         </mxCell>
 
         <!-- 注記 -->
-        <mxCell id="note" value="ローカルを主軸にしたのは、マイグレーションの試行錯誤が速いから。&#10;176 本書けたのは、DB のリセットが一瞬で終わるため。"
+        <mxCell id="note" value="ローカルを主軸にしたのは、マイグレーションの試行錯誤が速いから。&#10;237 本書けたのは、DB のリセットが一瞬で終わるため。"
           style="text;html=1;fontSize=12;align=left;verticalAlign=top;fontColor=#616E7C;"
           vertex="1" parent="1">
           <mxGeometry x="40" y="560" width="600" height="50" as="geometry" />
